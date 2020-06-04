@@ -6,6 +6,8 @@ import pl.mt.magazyn.models.Client;
 import pl.mt.magazyn.repositories.ClientRepository;
 import pl.mt.magazyn.services.ClientService;
 
+import java.util.Set;
+
 @Service
 public class ClientServiceImpl implements ClientService {
 
@@ -23,5 +25,10 @@ public class ClientServiceImpl implements ClientService {
         }else{
             throw new IllegalArgumentException("client cannot be null");
         }
+    }
+
+    @Override
+    public Set<Client> all() {
+        return clientRepository.findAll();
     }
 }

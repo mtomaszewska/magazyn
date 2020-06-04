@@ -3,9 +3,20 @@ package pl.mt.magazyn.dto;
 import pl.mt.magazyn.models.Client;
 
 public class ClientDTO {
+    private Long id;
     private String firstName;
     private String lastName;
     private String address;
+
+    public ClientDTO() {
+    }
+
+    public ClientDTO(Client client) {
+        this.setId(client.getId());
+        this.setFirstName(client.getFirstName());
+        this.setLastName(client.getLastName());
+        this.setAddress(client.getAddress());
+    }
 
     public String getFirstName() {
         return firstName;
@@ -33,9 +44,18 @@ public class ClientDTO {
 
     public Client toClient(){
         Client client = new Client();
+        client.setId(id);
         client.setFirstName(firstName);
         client.setLastName(lastName);
         client.setAddress(address);
         return client;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

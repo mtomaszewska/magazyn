@@ -1,12 +1,12 @@
 package pl.mt.magazyn.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.mt.magazyn.dto.ClientDTO;
 import pl.mt.magazyn.services.ClientService;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/clients")
@@ -22,5 +22,11 @@ public class ClientController {
     @PostMapping
     void createClient(@RequestBody ClientDTO client){
         clientService.save(client.toClient());
+    }
+
+    @GetMapping
+    Set<ClientDTO> clients(){
+        return clientService.all().stream()
+                .map(client -> new ClientDTO(client)).collect(Collectors.toSet());
     }
 }
