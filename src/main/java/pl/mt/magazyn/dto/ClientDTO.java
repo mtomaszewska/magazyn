@@ -8,14 +8,12 @@ public class ClientDTO {
     private String lastName;
     private String address;
 
-    public ClientDTO() {
+    public Long getId() {
+        return id;
     }
 
-    public ClientDTO(Client client) {
-        this.setId(client.getId());
-        this.setFirstName(client.getFirstName());
-        this.setLastName(client.getLastName());
-        this.setAddress(client.getAddress());
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -51,11 +49,12 @@ public class ClientDTO {
         return client;
     }
 
-    public Long getId() {
-        return id;
+    public ClientDTO fromClient(Client client) {
+        this.setId(client.getId());
+        this.setFirstName(client.getFirstName());
+        this.setLastName(client.getLastName());
+        this.setAddress(client.getAddress());
+        return this;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

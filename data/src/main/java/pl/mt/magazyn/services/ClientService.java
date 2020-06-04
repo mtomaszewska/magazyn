@@ -5,6 +5,6 @@ import pl.mt.magazyn.models.Client;
 import java.util.Set;
 
 public interface ClientService {
-    void save(Client client);
+    Client save(Client client);
     Set<Client> all();
 }

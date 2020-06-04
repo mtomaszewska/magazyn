@@ -27,6 +27,6 @@ public class ClientController {
     @GetMapping
     Set<ClientDTO> clients(){
         return clientService.all().stream()
-                .map(client -> new ClientDTO(client)).collect(Collectors.toSet());
+                .map(client -> new ClientDTO().fromClient(client)).collect(Collectors.toSet());
     }
 }

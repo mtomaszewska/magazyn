@@ -19,9 +19,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void save(Client client) {
+    public Client save(Client client) {
         if(client != null){
-            clientRepository.save(client);
+            return clientRepository.save(client);
         }else{
             throw new IllegalArgumentException("client cannot be null");
         }
