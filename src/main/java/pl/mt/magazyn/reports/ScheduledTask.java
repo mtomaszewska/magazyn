@@ -15,6 +15,6 @@ public class ScheduledTask {
 
     @Scheduled(fixedRate = 5000)
     public void executeTask() throws IOException {
-        reportCreator.createReport(LocalDate.now()/*.minusDays(1)*/);
+        reportCreator.createReport(LocalDate.now().minusDays(1));
     }
 }
