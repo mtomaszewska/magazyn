@@ -11,6 +11,7 @@ import pl.mt.magazyn.services.OrderService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @RestController
 public class OrderController {
@@ -21,11 +22,12 @@ public class OrderController {
     @Autowired
     ClientService clientService;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, ClientService clientService) {
         this.orderService = orderService;
+        this.clientService = clientService;
     }
 
-    @PostMapping("orders/client/{clientId}")
+    @PostMapping("client/{clientId}/order")
     public void create(@PathVariable Long clientId, @RequestBody OrderDto orderDto){
         Client client = clientService.findById(clientId);
         if(client != null){
@@ -34,7 +36,7 @@ public class OrderController {
             order.setClient(client);
             orderService.save(order);
         }else {
-            throw new IllegalArgumentException("Client does not exist");
+            throw new IllegalArgumentException("client does not exist");
         }
     }
 }

@@ -1,6 +1,7 @@
 package pl.mt.magazyn.dto;
 
 import pl.mt.magazyn.models.Order;
+import pl.mt.magazyn.models.OrderElement;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -10,14 +11,14 @@ import java.util.stream.Collectors;
 public class OrderDto {
     private Long id;
     private LocalDateTime date;
-    private Set<ProductDto> products = new HashSet<>();
+    private Set<OrderElementDto> elements = new HashSet<>();
     private ClientDto client;
 
     public OrderDto from(Order order) {
         this.setId(order.getId());
         this.setDate(order.getDate());
-        this.setProducts(order.getProducts().stream()
-                .map(product -> new ProductDto().from(product)).collect(Collectors.toSet()));
+        this.setElements(order.getOrderElements().stream()
+                .map(element -> new OrderElementDto().from(element)).collect(Collectors.toSet()));
         this.setClient(new ClientDto().from(order.getClient()));
         return this;
     }
@@ -26,8 +27,8 @@ public class OrderDto {
         Order order = new Order();
         order.setId(this.getId());
         order.setDate(this.getDate());
-        order.setProducts(this.getProducts().stream()
-            .map(ProductDto::to).collect(Collectors.toSet()));
+        order.setOrderElements(this.getElements().stream()
+            .map(OrderElementDto::to).collect(Collectors.toSet()));
         if(this.getClient() != null) {
             order.setClient(this.getClient().to());
         }
@@ -50,12 +51,12 @@ public class OrderDto {
         this.date = date;
     }
 
-    public Set<ProductDto> getProducts() {
-        return products;
+    public Set<OrderElementDto> getElements() {
+        return elements;
     }
 
-    public void setProducts(Set<ProductDto> products) {
-        this.products = products;
+    public void setElements(Set<OrderElementDto> elements) {
+        this.elements = elements;
     }
 
     public ClientDto getClient() {

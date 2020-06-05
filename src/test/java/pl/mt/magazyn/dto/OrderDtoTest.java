@@ -5,6 +5,7 @@ import pl.mt.magazyn.models.Client;
 import pl.mt.magazyn.models.Order;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,6 +20,7 @@ class OrderDtoTest {
         client.setId(1L);
         order.setClient(client);
         order.setDate(LocalDateTime.now());
+        order.setOrderElements(new HashSet<>());
         //when
         OrderDto orderDto = new OrderDto().from(order);
         //then

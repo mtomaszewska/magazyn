@@ -12,8 +12,8 @@ public class Order extends BaseEntity {
     @Column(name = "order_date")
     private LocalDateTime date;
 
-    @ManyToMany
-    private Set<Product> products = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<OrderElement> orderElements;
     @ManyToOne
     Client client;
 
@@ -25,12 +25,12 @@ public class Order extends BaseEntity {
         this.date = date;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public Set<OrderElement> getOrderElements() {
+        return orderElements;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
+    public void setOrderElements(Set<OrderElement> orderElements) {
+        this.orderElements = orderElements;
     }
 
     public Client getClient() {

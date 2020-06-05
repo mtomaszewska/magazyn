@@ -1,6 +1,7 @@
 package pl.mt.magazyn.reports;
 
 import pl.mt.magazyn.models.Order;
+import pl.mt.magazyn.models.OrderElement;
 import pl.mt.magazyn.models.Product;
 
 import java.math.BigDecimal;
@@ -18,8 +19,8 @@ public class OrderReportElement implements ReportElement {
 
     private BigDecimal cost(){
         BigDecimal cost = BigDecimal.ZERO;
-        for(Product product : order.getProducts()){
-            cost = cost.add(product.getPrice());
+        for(OrderElement element : order.getOrderElements()){
+            cost = cost.add(element.getQuantity().multiply(element.getProduct().getPrice()));
         }
         return cost;
     }
