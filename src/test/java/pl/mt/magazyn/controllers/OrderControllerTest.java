@@ -1,6 +1,5 @@
 package pl.mt.magazyn.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,13 +13,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.mt.magazyn.models.Client;
 import pl.mt.magazyn.models.Order;
 import pl.mt.magazyn.models.OrderElement;
-import pl.mt.magazyn.models.Product;
 import pl.mt.magazyn.services.ClientService;
 import pl.mt.magazyn.services.OrderService;
 
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

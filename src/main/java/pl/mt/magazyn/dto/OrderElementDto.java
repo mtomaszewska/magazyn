@@ -1,12 +1,8 @@
 package pl.mt.magazyn.dto;
 
-import pl.mt.magazyn.models.Client;
 import pl.mt.magazyn.models.OrderElement;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class OrderElementDto {
     private Long id;

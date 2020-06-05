@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import pl.mt.magazyn.models.Order;
 import pl.mt.magazyn.services.OrderService;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;

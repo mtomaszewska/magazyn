@@ -2,7 +2,6 @@ package pl.mt.magazyn.reports;
 
 import pl.mt.magazyn.models.Order;
 import pl.mt.magazyn.models.OrderElement;
-import pl.mt.magazyn.models.Product;
 
 import java.math.BigDecimal;
 

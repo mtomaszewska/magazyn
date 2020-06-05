@@ -1,7 +1,6 @@
 package pl.mt.magazyn.dto;
 
 import pl.mt.magazyn.models.Order;
-import pl.mt.magazyn.models.OrderElement;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

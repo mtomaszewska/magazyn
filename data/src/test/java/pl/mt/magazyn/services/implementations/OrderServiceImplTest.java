@@ -1,6 +1,5 @@
 package pl.mt.magazyn.services.implementations;
 
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import pl.mt.magazyn.models.Client;

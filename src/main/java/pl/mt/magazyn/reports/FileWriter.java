@@ -1,7 +1,6 @@
 package pl.mt.magazyn.reports;
 
 import org.springframework.stereotype.Component;
-import pl.mt.magazyn.models.Order;
 
 import java.io.*;
 import java.util.List;
