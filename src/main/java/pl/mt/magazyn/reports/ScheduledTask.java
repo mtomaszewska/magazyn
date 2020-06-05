@@ -13,7 +13,7 @@ public class ScheduledTask {
     @Autowired
     ReportCreator reportCreator;
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(cron = "0 0 1 * * *")
     public void executeTask() throws IOException {
         reportCreator.createReport(LocalDate.now().minusDays(1));
     }
