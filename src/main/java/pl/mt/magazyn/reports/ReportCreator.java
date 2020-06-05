@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 @Component
 public class ReportCreator {
 
+    private static final String REPORTS_LOCATION = "";
+
     @Autowired
     OrderService orderService;
 
@@ -22,7 +24,7 @@ public class ReportCreator {
     public void createReport(LocalDate date) throws IOException {
         List<Order> orders = orderService.orders(date);
 
-        fileWriter.writeToFile(new File("orders_" + date.toString() + ".txt"), orders.stream()
+        fileWriter.writeToFile(new File(REPORTS_LOCATION + "orders_" + date.toString() + ".txt"), orders.stream()
                 .map(OrderReportElement::new).collect(Collectors.toList()));
     }
 }

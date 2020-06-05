@@ -28,7 +28,9 @@ public class OrderDto {
         order.setDate(this.getDate());
         order.setProducts(this.getProducts().stream()
             .map(ProductDto::to).collect(Collectors.toSet()));
-        order.setClient(this.getClient().to());
+        if(this.getClient() != null) {
+            order.setClient(this.getClient().to());
+        }
         return order;
     }
 

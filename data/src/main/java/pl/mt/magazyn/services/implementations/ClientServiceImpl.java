@@ -12,4 +12,9 @@ public class ClientServiceImpl extends BaseServiceImpl<Client> implements Client
     public ClientServiceImpl(BaseEntityRepository<Client> repository) {
         super(repository);
     }
+
+    @Override
+    public Client findById(Long clientId) {
+        return repository.findById(clientId).orElse(null);
+    }
 }

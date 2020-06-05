@@ -4,4 +4,5 @@ import pl.mt.magazyn.models.Client;
 
 public interface ClientService extends BaseService<Client> {
 
+    Client findById(Long clientId);
 }
