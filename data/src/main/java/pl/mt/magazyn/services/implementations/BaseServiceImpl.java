@@ -9,7 +9,7 @@ import java.util.Set;
 public abstract class BaseServiceImpl<E extends BaseEntity> {
 
     @Autowired
-    protected BaseEntityRepository<E> repository;
+    protected final BaseEntityRepository<E> repository;
 
     public BaseServiceImpl(BaseEntityRepository<E> repository) {
         this.repository = repository;

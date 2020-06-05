@@ -11,7 +11,11 @@ import java.time.LocalDate;
 public class ScheduledTask {
 
     @Autowired
-    ReportCreator reportCreator;
+    private final ReportCreator reportCreator;
+
+    public ScheduledTask(ReportCreator reportCreator) {
+        this.reportCreator = reportCreator;
+    }
 
     @Scheduled(cron = "0 0 1 * * *")
     public void executeTask() throws IOException {

@@ -14,7 +14,7 @@ import java.util.Set;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
-    protected OrderRepository repository;
+    private final OrderRepository repository;
 
     public OrderServiceImpl(OrderRepository repository) {
         this.repository = repository;

@@ -20,14 +20,22 @@ import static java.util.stream.Collectors.groupingBy;
 @Component
 public class ReportCreator {
 
+    private final static String ORDER_PREFIX = "orders";
+    private final static String PRODUCT_PREFIX = "products";
+
     @Value("${reports.location}")
     private String reportsLocation;
 
     @Autowired
-    OrderService orderService;
+    private final OrderService orderService;
 
     @Autowired
-    FileWriter fileWriter;
+    private final FileWriter fileWriter;
+
+    public ReportCreator(OrderService orderService, FileWriter fileWriter) {
+        this.orderService = orderService;
+        this.fileWriter = fileWriter;
+    }
 
     public void createReport(LocalDate date) throws IOException {
         List<Order> orders = orderService.orders(date);
@@ -37,7 +45,7 @@ public class ReportCreator {
     }
 
     private void createOrdersReport(LocalDate date, List<Order> orders) throws IOException {
-        fileWriter.writeToFile(new File(reportsLocation + "orders_" + date.toString() + ".txt"), orders.stream()
+        fileWriter.writeToFile(new File(String.format("%s%s%s.txt", reportsLocation, ORDER_PREFIX, date.toString())), orders.stream()
                 .map(OrderReportElement::new).collect(Collectors.toList()));
     }
 
@@ -59,6 +67,6 @@ public class ReportCreator {
         }
 
         fileWriter.writeToFile(
-                new File(reportsLocation + "products_" + date.toString() + ".txt"), productReportElements);
+                new File(String.format("%s%s%s.txt", reportsLocation, PRODUCT_PREFIX, date.toString())), productReportElements);
     }
 }

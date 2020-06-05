@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 public class OrderReportElement implements ReportElement {
     private Order order;
+
     public OrderReportElement(Order order){
         this.order = order;
     }

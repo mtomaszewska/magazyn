@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 public class OrderController {
 
     @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
 
     @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
 
     public OrderController(OrderService orderService, ClientService clientService) {
         this.orderService = orderService;
