@@ -1,6 +1,9 @@
 package pl.mt.magazyn.reports;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import pl.mt.magazyn.models.Order;
 import pl.mt.magazyn.services.OrderService;
@@ -14,7 +17,8 @@ import java.util.stream.Collectors;
 @Component
 public class ReportCreator {
 
-    private static final String REPORTS_LOCATION = "";
+    @Value("${reports.location}")
+    private String reportsLocation;
 
     @Autowired
     OrderService orderService;
@@ -25,7 +29,7 @@ public class ReportCreator {
     public void createReport(LocalDate date) throws IOException {
         List<Order> orders = orderService.orders(date);
 
-        fileWriter.writeToFile(new File(REPORTS_LOCATION + "orders_" + date.toString() + ".txt"), orders.stream()
+        fileWriter.writeToFile(new File(reportsLocation + "orders_" + date.toString() + ".txt"), orders.stream()
                 .map(OrderReportElement::new).collect(Collectors.toList()));
     }
 }
