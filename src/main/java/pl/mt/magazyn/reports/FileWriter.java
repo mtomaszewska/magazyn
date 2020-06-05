@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class FileWriter {
 
-    public void writeToFile(File file, List<ReportElement> elements) throws IOException {
+    public void writeToFile(File file, List<? extends ReportElement> elements) throws IOException {
         FileOutputStream fos = new FileOutputStream(file);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
         for (ReportElement element : elements) {

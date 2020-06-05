@@ -10,7 +10,7 @@ public class Order extends BaseEntity {
     @Column(name = "order_date")
     private LocalDateTime date;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<OrderElement> orderElements;
     @ManyToOne
     Client client;
