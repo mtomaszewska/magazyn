@@ -1,6 +1,8 @@
 package pl.mt.magazyn.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mt.magazyn.dto.ClientDto;
 import pl.mt.magazyn.dto.OrderDto;
@@ -9,6 +11,7 @@ import pl.mt.magazyn.models.Order;
 import pl.mt.magazyn.services.ClientService;
 import pl.mt.magazyn.services.OrderService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,10 +20,10 @@ import java.util.Set;
 public class OrderController {
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @Autowired
-    ClientService clientService;
+    private ClientService clientService;
 
     public OrderController(OrderService orderService, ClientService clientService) {
         this.orderService = orderService;
@@ -28,7 +31,7 @@ public class OrderController {
     }
 
     @PostMapping("client/{clientId}/order")
-    public void create(@PathVariable Long clientId, @RequestBody OrderDto orderDto){
+    void create(@PathVariable Long clientId, @RequestBody OrderDto orderDto, HttpServletResponse response){
         Client client = clientService.findById(clientId);
         if(client != null){
             orderDto.setDate(LocalDateTime.now());
@@ -36,7 +39,7 @@ public class OrderController {
             order.setClient(client);
             orderService.save(order);
         }else {
-            throw new IllegalArgumentException("client does not exist");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 }

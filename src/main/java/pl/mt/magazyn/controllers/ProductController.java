@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ProductController {
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;

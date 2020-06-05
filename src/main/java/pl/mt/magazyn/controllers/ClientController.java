@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ClientController {
 
     @Autowired
-    ClientService clientService;
+    private ClientService clientService;
 
     public ClientController(ClientService clientService) {
         this.clientService = clientService;

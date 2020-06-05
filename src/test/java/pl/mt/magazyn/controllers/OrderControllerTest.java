@@ -50,7 +50,6 @@ class OrderControllerTest {
 
     @Test
     void create() throws Exception {
-
         //given
         Client client = new Client();
         client.setId(1L);
@@ -66,5 +65,23 @@ class OrderControllerTest {
         //then
         verify(clientService, times(1)).findById(client.getId());
         verify(orderService, times(1)).save(any());
+    }
+
+    @Test
+    void createClientNull() throws Exception {
+        //given
+        Long clientId = 1L;
+        when(clientService.findById(clientId)).thenReturn(null);
+        Order expected = new Order();
+        expected.setOrderElements(new HashSet<>());
+        expected.getOrderElements().add(new OrderElement());
+        //when
+        this.mockMvc.perform(post("/client/"+ clientId+"/order")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(expected)))
+                .andExpect(status().isBadRequest());
+        //then
+        verify(clientService, times(1)).findById(clientId);
+        verify(orderService, times(0)).save(any());
     }
 }
