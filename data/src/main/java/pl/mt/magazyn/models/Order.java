@@ -2,6 +2,7 @@ package pl.mt.magazyn.models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -14,6 +15,8 @@ public class Order extends BaseEntity {
 
     @ManyToMany
     private Set<Product> products = new HashSet<>();
+    @ManyToOne
+    Client client;
 
     public LocalDateTime getDate() {
         return date;
@@ -29,5 +32,13 @@ public class Order extends BaseEntity {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

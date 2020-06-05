@@ -14,7 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.mt.magazyn.models.Client;
+import pl.mt.magazyn.models.Product;
 import pl.mt.magazyn.services.ClientService;
+import pl.mt.magazyn.services.ProductService;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,16 +30,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class ClientControllerTest {
+class ProductControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Mock
-    ClientService clientService;
+    ProductService productService;
 
     @InjectMocks
-    ClientController clientController;
+    ProductController productController;
 
     ObjectMapper objectMapper;
 
@@ -45,36 +47,21 @@ class ClientControllerTest {
     void setUp() {
         objectMapper = new ObjectMapper();
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(clientController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
     }
 
     @Test
-    void createClient() throws Exception {
+    void products() throws Exception {
         //given
-        Client expected = new Client();
-        when(clientService.save(expected)).thenReturn(expected);
+        Set<Product> expected = new HashSet<>();
+        Product product1 = new Product();
+        Product product2 = new Product();
+        expected.add(product1);
+        expected.add(product2);
         //when
-        this.mockMvc.perform(post("/clients").contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(expected)))
-                .andExpect(status().isOk());
+        when(productService.all()).thenReturn(expected);
         //then
-        verify(clientService, times(1)).save(any());
-    }
-
-    @Test
-    void clients() throws Exception {
-        //given
-        Set<Client> expected = new HashSet<>();
-        Client client1 = new Client();
-        Client client2 = new Client();
-        Client client3 = new Client();
-        expected.add(client1);
-        expected.add(client2);
-        expected.add(client3);
-        //when
-        when(clientService.all()).thenReturn(expected);
-        //then
-        MvcResult actual = this.mockMvc.perform(get("/clients"))
+        MvcResult actual = this.mockMvc.perform(get("/products"))
                 .andExpect(status().isOk())
                 .andReturn();
         assertEquals(expected.size(), objectMapper

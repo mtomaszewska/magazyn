@@ -1,4 +1,6 @@
 package pl.mt.magazyn.services;
 
-public interface ProductService {
+import pl.mt.magazyn.models.Product;
+
+public interface ProductService extends BaseService<Product> {
 }

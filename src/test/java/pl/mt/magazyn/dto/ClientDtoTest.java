@@ -3,20 +3,23 @@ package pl.mt.magazyn.dto;
 import org.junit.jupiter.api.Test;
 import pl.mt.magazyn.models.Client;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.HashSet;
 
-class ClientDTOTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class ClientDtoTest {
 
     @Test
-    void toClient() {
+    void to() {
         //given
-        ClientDTO clientDTO = new ClientDTO();
+        ClientDto clientDTO = new ClientDto();
         clientDTO.setId(1L);
         clientDTO.setFirstName("FIRST_NAME");
         clientDTO.setLastName("LAST_NAME");
         clientDTO.setAddress("ADDRESS");
+        clientDTO.setOrders(new HashSet<>());
         //when
-        Client client = clientDTO.toClient();
+        Client client = clientDTO.to();
         //then
         assertEquals(clientDTO.getId(), client.getId());
         assertEquals(clientDTO.getFirstName(), client.getFirstName());
@@ -25,15 +28,16 @@ class ClientDTOTest {
     }
 
     @Test
-    void fromClient() {
+    void from() {
         //given
         Client client = new Client();
         client.setId(1L);
         client.setFirstName("FIRST_NAME");
         client.setLastName("LAST_NAME");
         client.setAddress("ADDRESS");
+        client.setOrders(new HashSet<>());
         //when
-        ClientDTO clientDTO = new ClientDTO().fromClient(client);
+        ClientDto clientDTO = new ClientDto().from(client);
         //then
         assertEquals(client.getId(), clientDTO.getId());
         assertEquals(client.getFirstName(), clientDTO.getFirstName());
