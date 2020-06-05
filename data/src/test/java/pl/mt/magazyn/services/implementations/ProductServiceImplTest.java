@@ -2,10 +2,7 @@ package pl.mt.magazyn.services.implementations;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import pl.mt.magazyn.models.Order;
 import pl.mt.magazyn.models.Product;
-import pl.mt.magazyn.repositories.BaseEntityRepository;
-import pl.mt.magazyn.repositories.OrderRepository;
 import pl.mt.magazyn.repositories.ProductRepository;
 
 class ProductServiceImplTest extends BaseServiceImplTest<Product> {

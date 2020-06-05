@@ -1,7 +1,6 @@
 package pl.mt.magazyn.dto;
 
 import pl.mt.magazyn.models.Client;
-import pl.mt.magazyn.models.Order;
 
 import java.util.HashSet;
 import java.util.Set;

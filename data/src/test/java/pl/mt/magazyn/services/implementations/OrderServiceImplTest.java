@@ -1,13 +1,13 @@
 package pl.mt.magazyn.services.implementations;
 
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import pl.mt.magazyn.models.Client;
 import pl.mt.magazyn.models.Order;
-import pl.mt.magazyn.repositories.BaseEntityRepository;
 import pl.mt.magazyn.repositories.OrderRepository;
 
-class OrderServiceImplTest extends BaseServiceImplTest<Order> {
+class OrderServiceImplTest /*extends BaseServiceImplTest<Order> */{
 
     @InjectMocks
     OrderServiceImpl orderServiceImpl;
@@ -15,19 +15,19 @@ class OrderServiceImplTest extends BaseServiceImplTest<Order> {
     @Mock
     OrderRepository orderRepository;
 
-    @Override
+  //  @Override
     Order create() {
         Order order = new Order();
         order.setClient(new Client());
         return order;
     }
 
-    @Override
+   // @Override
     OrderServiceImpl service() {
         return orderServiceImpl;
     }
 
-    @Override
+  //  @Override
     OrderRepository repository() {
         return orderRepository;
     }

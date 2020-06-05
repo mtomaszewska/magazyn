@@ -1,8 +1,9 @@
 package pl.mt.magazyn.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import pl.mt.magazyn.dto.ClientDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pl.mt.magazyn.dto.ProductDto;
 import pl.mt.magazyn.services.ProductService;
 
